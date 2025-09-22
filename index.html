@@ -822,9 +822,11 @@
                         <div class="tp-cta-it-content text-center">
                            <h2 class="tp-ff-inter fw-600 fs-36 ls-m-4 tp-text-common-black-1 mb-30">Stay informed with our newsletter.</h2>
                            <div class="tp-cta-it-form">
-                              <form action="https://calendly.com/ourdou-marouane17/fiver-marouane">
-                                 <input class="cta-it-input mb-30 mr-20" type="text" placeholder="Enter your email">
+                              <form id="subscribe-form" novalidate>
+                                 <input class="cta-it-input mb-30 mr-20" name="email" required id="email" type="email" placeholder="Enter your email">
+                                 <input type="text" id="hp" name="hp" autocomplete="off" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;" tabindex="-1" aria-hidden="true" />
                                  <button type="submit" class="tp-btn-it-xl mb-30 fw-700 fs-16 ls-m-3 text-uppercase tp-text-grey-5 tp-ff-inter tp-bg-common-black-1 tp-round-10">Subscribe Now</button>
+                                 <small id="sub-msg" aria-live="polite"></small>
                               </form>
                            </div>
                            <p class="tp-cta-it-trams tp-ff-inter fw-400 fs-18 ls-m-4 tp-text-common-black-1">
@@ -948,6 +950,8 @@
    <script src="assets/js/slider-init.js"></script>
    <script src="assets/js/main.js"></script>
    <script src="assets/js/tp-cursor.js"></script>
+   <script defer src="/assets/js/subscribe.js"></script>
+
 </body>
 
 </html>
