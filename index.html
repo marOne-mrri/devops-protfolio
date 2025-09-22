@@ -950,7 +950,46 @@
    <script src="assets/js/slider-init.js"></script>
    <script src="assets/js/main.js"></script>
    <script src="assets/js/tp-cursor.js"></script>
-   <script defer src="/assets/js/subscribe.js"></script>
+   <script>
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxnMGBQcVHfy1rdh7G3RewSHW6Ut934lCFWomqb1V4vpMC4_92lBP6WqUr8qCjUemRN/exec'; // /exec URL
+
+  const form = document.getElementById('subscribe-form');
+  const msg  = document.getElementById('sub-msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const hp    = document.getElementById('hp').value;
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.textContent = 'Please enter a valid email.';
+      return;
+    }
+
+    msg.textContent = 'Submitting...';
+
+    const body = new URLSearchParams({
+      email,
+      page: location.href,
+      ua: navigator.userAgent,
+      hp
+    });
+
+    try {
+      await fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors', // ← prevents CORS errors; response is opaque
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body
+      });
+      // We can't read the response in no-cors; assume success:
+      msg.textContent = 'Thanks! You are subscribed.';
+      form.reset();
+    } catch (err) {
+      msg.textContent = 'Network error. Please try again.';
+    }
+  });
+</script>
 
 </body>
 
